@@ -3,7 +3,7 @@ const express = require('express');
 const socketio = require('socket.io');
 // cross origin resource sharing policy, if we don't have it, some of our sockets will be ignored
 const cors = require('cors');
-const path = require('path');
+// const path = require('path');
 
 const { addUser, removeUser, getUser, getUsersInRoom } = require('./users');
 
@@ -60,16 +60,16 @@ io.on('connect', (socket) => {
   })
 });
 
-//serve static asset if in production
-if(process.env.NODE_ENV === 'production'){
-  console.log("Production environment. Serving static asset from client/build.");
-  // Set static folder
-  app.use(express.static('client/build'));
-
-  // server will serve up index.html in the build folder if in production
-  app.get('*', (req, res) => {
-    res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
-  })
-}
+// //serve static asset if in production
+// if(process.env.NODE_ENV === 'production'){
+//   console.log("Production environment. Serving static asset from client/build.");
+//   // Set static folder
+//   app.use(express.static('client/build'));
+//
+//   // server will serve up index.html in the build folder if in production
+//   app.get('*', (req, res) => {
+//     res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
+//   })
+// }
 
 server.listen(port, () => console.log(`Server has started on port ${port}`));
