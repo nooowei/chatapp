@@ -18,21 +18,28 @@ app.use(router);
 
 io.on('connect', (socket) => {
   socket.on('join', ({ name, room }, callback) => {
+    //here we are calling the helper function and pass in the parameters
     const { error, user } = addUser({ id: socket.id, name, room });
 
     //if there is an error, send error back to the client callback function which requested it
     if(error) return callback(error);
 
+    // a built-in socket.io method
+    // room is stored in the user object
     socket.join(user.room);
 
     socket.emit('message', { user: 'admin', text: `${user.name}, welcome to room ${user.room}.`});
+    // socket.broadcast() sends message to everyone in room but sender
     socket.broadcast.to(user.room).emit('message', { user: 'admin', text: `${user.name} has joined!` });
 
     io.to(user.room).emit('roomData', { room: user.room, users: getUsersInRoom(user.room) });
 
+    // so that the callback at the frontend gets called every time
+    // if no error, no error will be passed
     callback();
   });
 
+  // event handler for 'sendMessage'
   socket.on('sendMessage', (message, callback) => {
     const user = getUser(socket.id);
 
