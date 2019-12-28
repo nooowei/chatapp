@@ -24,7 +24,7 @@ const Chat = ({ location }) =>{
   const [messages, setMessages] = useState([]);
 
   // in production code, change this to the host address
-  const ENDPOINT = 'localhost:5000';
+  const ENDPOINT = 'https://weischatapp.herokuapp.com';
 
   // with React-Hook, we can have as many useEffect as we want
   useEffect(() => {
