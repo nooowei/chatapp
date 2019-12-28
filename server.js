@@ -9,7 +9,7 @@ const { addUser, removeUser, getUser, getUsersInRoom } = require('./users');
 
 const router = require('./router');
 
-const PORT = process.env.port || 5000;
+const port = process.env.PORT || 5000;
 const app = express();
 const server = http.createServer(app);
 const io = socketio(server);
@@ -72,4 +72,4 @@ io.on('connect', (socket) => {
   })
 });
 
-app.listen(PORT, () => console.log(`Server has started on port ${PORT}`));
+app.listen(port, () => console.log(`Server has started on port ${PORT}`));
