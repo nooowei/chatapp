@@ -3,6 +3,8 @@ const express = require('express');
 const socketio = require('socket.io');
 const cors = require('cors');
 
+const { addUser, removeUser, getUser, getUsersInRoom } = require('./users');
+
 const router = require('./router');
 
 const PORT = process.env.port || 5000;
@@ -18,6 +20,7 @@ io.on('connect', (socket) => {
   socket.on('join', ({ name, room }, callback) => {
     const { error, user } = addUser({ id: socket.id, name, room });
 
+    //if there is an error, send error back to the client callback function which requested it
     if(error) return callback(error);
 
     socket.join(user.room);

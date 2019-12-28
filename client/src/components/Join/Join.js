@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from "react-router-dom";
+import './Join.css';
 
 const Join = () =>{
   // use React-Hook to set initial state of form fields to blank
