@@ -2,6 +2,7 @@ import React from 'react';
 
 import './Input.css';
 
+//here we are receiving the data and function from where it is called in chat.js
 const Input = ({ setMessage, sendMessage, message }) => (
   <form className="form">
     <input
@@ -12,7 +13,7 @@ const Input = ({ setMessage, sendMessage, message }) => (
       onChange={({ target: { value } }) => setMessage(value)}
       onKeyPress={event => event.key === 'Enter' ? sendMessage(event) : null}
     />
-    <button className="sendButton" onClick={e => sendMessage(e)}>Send</button>
+    <button className="sendButton" onClick={event => sendMessage(event)}>Send</button>
   </form>
 )
 

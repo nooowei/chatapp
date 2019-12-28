@@ -88,6 +88,7 @@ const Chat = ({ location }) =>{
     }
   }
 
+  // here we are calling the components, and sending data/functions as proerties
   return (
     <div className="outerContainer">
       <div className="container">
