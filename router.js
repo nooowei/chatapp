@@ -18,6 +18,8 @@ const path = require('path');
 //   res.send({ response: "Server is up and running." }).status(200);
 // });
 
+
+
 router.get("/", (req, res) => {
   res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
 });
